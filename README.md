@@ -20,6 +20,15 @@ The CAD model of Sahayak features a differential-drive mobile platform, dual art
 ### Isometric View
 ![Sahayak CAD Isometric View](docs/cad/cad_isometric.png)
 
+## Prototype Development
+
+The project evolved through iterative mechanical design and prototyping, progressing from an initial physical prototype to the current dual-arm mobile manipulator design.
+
+### Initial Prototype
+![Initial Sahayak Prototype](docs/photos/initial_prototype1.jpg)
+![Initial Sahayak Prototype](docs/photos/initial_prototype2.jpg)
+![Initial Sahayak Prototype](docs/photos/initial_prototype3.jpg)
+
 
 ## Features
 
