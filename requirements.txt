@@ -1,0 +1,10 @@
+# Python packages for the voice and vision nodes (not needed for plain simulation).
+# Install with:  pip install -r requirements.txt
+numpy
+scipy
+sounddevice
+openai-whisper
+google-generativeai
+elevenlabs
+mediapipe
+opencv-contrib-python==4.7.0.72   # ArUco detection needs the contrib build (version noted in mobi_vision/aruco_detect.py)
