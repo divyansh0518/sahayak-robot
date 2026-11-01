@@ -4,6 +4,21 @@ A voice-controlled service robot built on **ROS 2**: a differential-drive base w
 SLAM + Nav2 autonomous navigation, and a natural-language voice interface. The robot carries two 6-DOF arms and
 storage shelves for transporting and serving food.
 
+## CAD & Mechanical Design
+
+The CAD model of Sahayak features a differential-drive mobile platform, dual articulated robotic arms, and a vertically arranged storage compartment for food transportation and serving.
+
+### Front View
+![Sahayak CAD Front View](docs/cad/cad_front.png)
+
+### Top View
+![Sahayak CAD Top View](docs/cad/cad_top.png)
+
+### Side View
+![Sahayak CAD Rear View](docs/cad/cad_side.png)
+
+### Isometric View
+![Sahayak CAD Isometric View](docs/cad/cad_isometric.png)
 
 
 ## Features
