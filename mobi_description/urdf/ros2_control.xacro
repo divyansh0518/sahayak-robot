@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<robot name="mobi" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!--
+    ─────────────────────────────────────────────────────────────────────────
+    1) Arguments (unchanged)
+    ─────────────────────────────────────────────────────────────────────────
+  -->
+  <xacro:arg name="serial_port" default="/dev/ttyUSB0"/>
+  <xacro:arg name="is_sim"       default="true"/>
+
+  <!--
+    ─────────────────────────────────────────────────────────────────────────
+    2) ros2_control block
+       ────────────────────
+       - When "is_sim" is true, use Gazebo plugin.
+       - Otherwise, choose MobiInterface plugin based on serial_port.
+       ─────────────────────────────────────────────────────────────────────────
+  -->
+  <ros2_control name="RobotSystem" type="system">
+
+    <!-- Example property; keep as-is -->
+    <xacro:property name="PI" value="3.14159265359" />
+
+    <!-- ────────── Gazebo hardware (unchanged) ────────── -->
+    <xacro:if value="$(arg is_sim)">
+      <hardware>
+        <plugin>ign_ros2_control/IgnitionSystem</plugin>
+      </hardware>
+    </xacro:if>
+
+    <!-- ────────── Real Robot hardware (wrap in <xacro:unless>) ────────── -->
+    <xacro:unless value="$(arg is_sim)">
+      <hardware>
+        <!--
+          Compare serial_port via $(eval serial_port == '/dev/ttyUSB0').
+          XACRO makes each <xacro:arg> available by name in $(eval …).
+        -->
+        <xacro:if value="$(eval serial_port == '/dev/ttyUSB0')">
+          <plugin>mobi_firmware/MobiInterface</plugin>
+          <param name="port">/dev/ttyACM0</param>
+        </xacro:if>
+
+        <xacro:if value="$(eval serial_port == '/dev/ttyUSB1')">
+          <plugin>mobi_firmware/MobiInterface</plugin>
+          <param name="port">/dev/ttyACM0</param>
+        </xacro:if>
+      </hardware>
+    </xacro:unless>
+
+    <!-- ────────── ros2_control Common Interfaces (unchanged) ────────── -->
+    <!-- 60rpm = 6.3rad/sec -->
+    <joint name="right_wheel_joint">
+      <command_interface name="velocity">
+        <param name="min">-4.5</param>
+        <param name="max">4.5</param>
+      </command_interface>
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+
+    <joint name="left_wheel_joint">
+      <command_interface name="velocity">
+        <param name="min">-4.5</param>
+        <param name="max">4.5</param>
+      </command_interface>
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+
+    <!--
+      (Additional joint definitions can go here, if needed.
+       They remain unchanged from your original file.)
+    -->
+
+  </ros2_control>
+
+</robot>
